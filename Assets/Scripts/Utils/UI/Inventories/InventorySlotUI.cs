@@ -1,61 +1,54 @@
 ﻿using GameDevTV.Core.UI.Dragging;
+using GameDevTV.Inventories;
 using UnityEngine;
 
 namespace GameDevTV.UI.Inventories
 {
-    public class InventorySlotUI : MonoBehaviour, IDragContainer<Sprite>
+    public class InventorySlotUI : MonoBehaviour, IDragContainer<InventoryItem>
     {
         // CONFIG DATA
         [SerializeField] InventoryItemIcon icon = null;
 
+        // STATE
+        int index;
+        Inventory inventory;
+
         // PUBLIC
 
-        /*
-         * How many sprite items of this type can you accept?
-         * This is for stackable items like coins
-        */
-        public int MaxAcceptable(Sprite item)
+        public void Setup(Inventory inventory, int index)
         {
-            if (GetItem() == null)
+            this.inventory = inventory;
+            this.index = index;
+            icon.SetItem(inventory.GetItemInSlot(index));
+        }
+
+        public int MaxAcceptable(InventoryItem item)
+        {
+            if (inventory.HasSpaceFor(item))
             {
                 return int.MaxValue;
             }
             return 0;
         }
 
-        /*
-         * Takes sprite and number of items.
-         * Designed for stackable items such as coins.
-        */
-        public void AddItems(Sprite item, int number)
+        public void AddItems(InventoryItem item, int number)
         {
-            icon.SetItem(item);
+            inventory.AddItemToSlot(index, item);
         }
 
-        /*
-         * Returns icon of current item.
-        */
-        public Sprite GetItem()
+        public InventoryItem GetItem()
         {
-            return icon.GetItem();
+            return inventory.GetItemInSlot(index);
         }
 
-        /*
-         * Returns number of items in slot.
-         * Designed for stackable items.
-        */
         public int GetNumber()
         {
             return 1;
         }
 
-        /*
-         * Allows you to only move a certain
-         * number of items from slot.
-        */
         public void RemoveItems(int number)
         {
-            icon.SetItem(null);
+            inventory.RemoveFromSlot(index);
         }
     }
 }
