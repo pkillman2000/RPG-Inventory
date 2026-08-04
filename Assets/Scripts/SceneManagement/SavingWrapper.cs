@@ -1,5 +1,5 @@
-using System.Collections;
 using GameDevTV.Saving;
+using System.Collections;
 using UnityEngine;
 
 namespace InventoryExample.SceneManagement
@@ -10,17 +10,23 @@ namespace InventoryExample.SceneManagement
         [SerializeField] KeyCode loadKey = KeyCode.L;
         [SerializeField] KeyCode deleteKey = KeyCode.Delete;
         const string defaultSaveFile = "save";
-        
-        private void Awake() 
+
+        private void Awake()
         {
             StartCoroutine(LoadLastScene());
         }
 
-        private IEnumerator LoadLastScene() {
+        private IEnumerator LoadLastScene()
+        {
             yield return GetComponent<SavingSystem>().LoadLastScene(defaultSaveFile);
         }
 
-        private void Update() {
+        /*
+         * TODO:
+         * Change this to new input system
+        */
+        private void Update()
+        {
             if (Input.GetKeyDown(saveKey))
             {
                 Save();

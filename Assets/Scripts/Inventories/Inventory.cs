@@ -167,8 +167,12 @@ namespace GameDevTV.Inventories
             return -1;
         }
 
+        // *** From ISaveable ***
+
+        // This defines what variables are saved
         object ISaveable.CaptureState()
         {
+            // Create an array that contains only the item ID or null if empty
             var slotStrings = new string[inventorySize];
             for (int i = 0; i < inventorySize; i++)
             {
@@ -180,8 +184,10 @@ namespace GameDevTV.Inventories
             return slotStrings;
         }
 
+        // This restores the saved variables
         void ISaveable.RestoreState(object state)
         {
+            // Using item ID, restore info on inventory
             var slotStrings = (string[])state;
             for (int i = 0; i < inventorySize; i++)
             {
