@@ -4,7 +4,7 @@ namespace GameDevTV.Inventories
 {
     /// <summary>
     /// To be placed at the root of a Pickup prefab. Contains the data about the
-    /// _pickup such as the type of item and the number.
+    /// pickup such as the type of item and the number.
     /// </summary>
     public class Pickup : MonoBehaviour
     {
@@ -41,7 +41,6 @@ namespace GameDevTV.Inventories
         public void PickupItem()
         {
             bool foundSlot = inventory.AddToFirstEmptySlot(item);
-            // If Inventory can add item to slot, destroy it here
             if (foundSlot)
             {
                 Destroy(gameObject);

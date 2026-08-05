@@ -1,5 +1,6 @@
-using GameDevTV.Inventories;
 using UnityEngine;
+using GameDevTV.Inventories;
+using InventoryExample.Control;
 
 namespace InventoryExample.Control
 {
@@ -13,14 +14,6 @@ namespace InventoryExample.Control
             pickup = GetComponent<Pickup>();
         }
 
-        /*
-         * From IRaycastable
-        */
-
-        /*
-         * Add a distance check so that the player cannot
-         * pick up an item across the scene.
-        */
         public CursorType GetCursorType()
         {
             if (pickup.CanBePickedUp())
@@ -33,14 +26,6 @@ namespace InventoryExample.Control
             }
         }
 
-        /*
-         * TO DO
-         * Convert to new input method
-        */
-
-        /*
-         * From IRaycastable
-        */
         public bool HandleRaycast(PlayerController callingController)
         {
             if (Input.GetMouseButtonDown(0))

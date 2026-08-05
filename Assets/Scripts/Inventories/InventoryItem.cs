@@ -65,10 +65,10 @@ namespace GameDevTV.Inventories
         }
         
         /// <summary>
-        /// Spawn the _pickup gameobject into the world.
+        /// Spawn the pickup gameobject into the world.
         /// </summary>
-        /// <param name="position">Where to spawn the _pickup.</param>
-        /// <returns>Reference to the _pickup object spawned.</returns>
+        /// <param name="position">Where to spawn the pickup.</param>
+        /// <returns>Reference to the pickup object spawned.</returns>
         public Pickup SpawnPickup(Vector3 position)
         {
             var pickup = Instantiate(this.pickup);
