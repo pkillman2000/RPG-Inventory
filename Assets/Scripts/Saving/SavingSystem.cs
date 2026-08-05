@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -84,10 +86,7 @@ namespace GameDevTV.Saving
 
         private void CaptureState(Dictionary<string, object> state)
         {
-            // FindObjectsOfType has been deprecated.
-            // foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
-            foreach (SaveableEntity saveable in FindObjectsByType<SaveableEntity>(FindObjectsSortMode.None))
-
+            foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
             {
                 state[saveable.GetUniqueIdentifier()] = saveable.CaptureState();
             }
@@ -97,9 +96,7 @@ namespace GameDevTV.Saving
 
         private void RestoreState(Dictionary<string, object> state)
         {
-            // FindObjectsOfType has been deprecated.
-            // foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
-            foreach (SaveableEntity saveable in FindObjectsByType<SaveableEntity>(FindObjectsSortMode.None))
+            foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
             {
                 string id = saveable.GetUniqueIdentifier();
                 if (state.ContainsKey(id))

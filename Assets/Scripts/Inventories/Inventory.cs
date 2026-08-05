@@ -1,6 +1,6 @@
-﻿using GameDevTV.Saving;
-using System;
+﻿using System;
 using UnityEngine;
+using GameDevTV.Saving;
 
 namespace GameDevTV.Inventories
 {
@@ -120,7 +120,7 @@ namespace GameDevTV.Inventories
         {
             if (slots[slot] != null)
             {
-                return AddToFirstEmptySlot(item);
+                return AddToFirstEmptySlot(item); ;
             }
 
             slots[slot] = item;
@@ -136,10 +136,6 @@ namespace GameDevTV.Inventories
         private void Awake()
         {
             slots = new InventoryItem[inventorySize];
-            slots[0] = InventoryItem.GetFromID("71e73607-4bac-4e42-b7d6-5e6f91e92dc4");
-            slots[1] = InventoryItem.GetFromID("0aa7c8b8-4796-42aa-89d0-9d100ea67d7b");
-            slots[2] = InventoryItem.GetFromID("fa20e1b6-3c81-4520-b821-54b9f0b1ae02");
-
         }
 
         /// <summary>
@@ -167,12 +163,8 @@ namespace GameDevTV.Inventories
             return -1;
         }
 
-        // *** From ISaveable ***
-
-        // This defines what variables are saved
         object ISaveable.CaptureState()
         {
-            // Create an array that contains only the item ID or null if empty
             var slotStrings = new string[inventorySize];
             for (int i = 0; i < inventorySize; i++)
             {
@@ -184,10 +176,8 @@ namespace GameDevTV.Inventories
             return slotStrings;
         }
 
-        // This restores the saved variables
         void ISaveable.RestoreState(object state)
         {
-            // Using item ID, restore info on inventory
             var slotStrings = (string[])state;
             for (int i = 0; i < inventorySize; i++)
             {

@@ -1,5 +1,5 @@
-﻿using GameDevTV.Saving;
-using InventoryExample.Core;
+﻿using InventoryExample.Core;
+using GameDevTV.Saving;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,8 +13,7 @@ namespace InventoryExample.Movement
 
         NavMeshAgent navMeshAgent;
 
-        private void Awake()
-        {
+        private void Awake() {
             navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
@@ -72,19 +71,11 @@ namespace InventoryExample.Movement
             return total;
         }
 
-        // *** From ISaveable ***
-
-        /*
-         * This defines what variables are going to be saved in this method
-        */
         public object CaptureState()
         {
             return new SerializableVector3(transform.position);
         }
 
-        /*
-         * This returns saved variables
-        */
         public void RestoreState(object state)
         {
             SerializableVector3 position = (SerializableVector3)state;

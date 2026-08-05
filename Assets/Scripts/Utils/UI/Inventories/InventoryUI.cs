@@ -1,5 +1,7 @@
-﻿using GameDevTV.Inventories;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using GameDevTV.Inventories;
 
 namespace GameDevTV.UI.Inventories
 {
@@ -17,7 +19,7 @@ namespace GameDevTV.UI.Inventories
 
         // LIFECYCLE METHODS
 
-        private void Awake()
+        private void Awake() 
         {
             playerInventory = Inventory.GetPlayerInventory();
             playerInventory.inventoryUpdated += Redraw;
@@ -30,17 +32,13 @@ namespace GameDevTV.UI.Inventories
 
         // PRIVATE
 
-        // This is called by Start and whenever the
-        // inventoryUpdated event happens.
         private void Redraw()
         {
-            // Clear all slots in Inventory UI
             foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);
             }
 
-            // Repopulate the slots with current inventory
             for (int i = 0; i < playerInventory.GetSize(); i++)
             {
                 var itemUI = Instantiate(InventoryItemPrefab, transform);

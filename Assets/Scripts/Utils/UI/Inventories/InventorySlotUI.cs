@@ -1,6 +1,8 @@
-﻿using GameDevTV.Core.UI.Dragging;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using GameDevTV.Inventories;
-using UnityEngine;
+using GameDevTV.Core.UI.Dragging;
 
 namespace GameDevTV.UI.Inventories
 {
@@ -11,6 +13,7 @@ namespace GameDevTV.UI.Inventories
 
         // STATE
         int index;
+        InventoryItem item;
         Inventory inventory;
 
         // PUBLIC
