@@ -1,12 +1,11 @@
-﻿using GameDevTV.Saving;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using GameDevTV.Saving;
 
 namespace GameDevTV.Inventories
 {
     /// <summary>
     /// To be placed on anything that wishes to drop pickups into the world.
-    /// Player or Enemy (when they die, they may drop pickups)
     /// Tracks the drops for saving and restoring.
     /// </summary>
     public class ItemDropper : MonoBehaviour, ISaveable
